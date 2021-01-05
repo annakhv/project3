@@ -15,32 +15,156 @@
                 <li><a href="{% url 'logout' %}">Logout</a></li>
             </ul>
         </header>
+      
         <main class="container">
+            <h1 class="center">Menu</h1>
         <div class="box">
              
         </div>
-
+        <h2 class="center">Regular Pizza</h2>
         <div class="box1">
-             <h3>Regular Pizza</h3>
+           
+             <div>
+               <ul>
+                   <li>Cheese</li>
+                   <li>1 topping  </li>
+                   <li>2 toppings</li>
+                   <li>3 toppings</li>
+                   <li>Special</li>
+               </ul>
+             </div>
+             <div> 
+                  small
+                  <form>
+                    <label for="smallcheese"> 13.25 </label>
+                    <input type="checkbox" id="smallcheese" name="smallcheese" value=13.25><br>
+                    <label for="smallonetopping"> 14.25 </label>
+                    <input type="checkbox" id="smallonetopping" name="smallonetopping" value=14.25><br>
+                    <label for="smalltwotoppings"> 15.75 </label>
+                    <input type="checkbox" id="smalltwotoppings" name="smalltwotoppings" value=15.75><br>
+                    <label for="smallthreetoppings"> 16.75 </label>
+                    <input type="checkbox" id="smallthreetoppings" name="smallthreetoppings" value=16.75><br>
+                    <label for="smallspecial"> 18.30 </label>
+                    <input type="checkbox" id="smallspecial" name="smallspecial" value=18.30>
+                  </form> 
+             </div>
+             <div>
+                 large
+                <form>
+                  <label for="largecheese"> 18.75 </label>
+                  <input type="checkbox" id="largecheese" name="largecheese" value=18.75><br>
+                  <label for="largeonetopping"> 20.75 </label>
+                  <input type="checkbox" id="largeonetopping" name="largeonetopping" value=20.75><br>
+                  <label for="largetwotoppings"> 22.75 </label>
+                  <input type="checkbox" id="largetwotoppings" name="largetwotoppings" value=22.75><br>
+                  <label for="largethreetoppings"> 24.75 </label>
+                  <input type="checkbox" id="largethreetoppings" name="largethreetoppings" value=24.75><br>
+                  <label for="largespecial"> 26.75 </label>
+                  <input type="checkbox" id="largespecial" name="largespecial" value=26.75>
+                </form>  
+             </div>
         </div>
+        <h2 class="center">Sicilian Pizza</h2>
         <div class="box2">
-            <h3>Sicilian Pizza</h3>
+           
+            <div>
+                <ul>
+                    <li>Cheese</li>
+                    <li>1 item  </li>
+                    <li>2 items</li>
+                    <li>3 items</li>
+                    <li>Special</li>
+                </ul>
+            </div>
+            <div>
+                small
+                <form>
+                  <label for="smallcheeseSicilian"> 25.25 </label>
+                  <input type="checkbox" id="smallcheeseSicilian" name="smallcheeseSicilian" value=25.25><br>
+                  <label for="smalloneitem"> 27.25 </label>
+                  <input type="checkbox" id="smalloneitem" name="smalloneitem" value=27.25><br>
+                  <label for="smalltwoitems"> 29.75 </label>
+                  <input type="checkbox" id="smalltwoitems" name="smalltwoitems" value=29.75><br>
+                  <label for="smallthreeitems"> 31.25 </label>
+                  <input type="checkbox" id="smallthreeitems" name="smallthreeitems" value=31.25><br>
+                  <label for="smallspecialSicilian"> 32.25 </label>
+                  <input type="checkbox" id="smallspecialSicilian" name="smallspecialSicilian" value=32.25>
+                </form> 
+            </div>
+            <div>
+                large
+                <form>
+                  <label for="largecheeseSicilian"> 39.70 </label>
+                  <input type="checkbox" id="largecheeseSicilian" name="largecheeseSicilian" value=39.70><br>
+                  <label for="largeoneitem"> 41.70 </label>
+                  <input type="checkbox" id="largeoneitem" name="largeoneitem" value=41.70><br>
+                  <label for="largetwoitems"> 43.70 </label>
+                  <input type="checkbox" id="largetwoitems" name="largetwoitems" value=43.70><br>
+                  <label for="largethreeitems"> 45.70 </label>
+                  <input type="checkbox" id="largethreeitems" name="largethreeitems" value=45.70><br>
+                  <label for="largespecialSicilian"> 46.70 </label>
+                  <input type="checkbox" id="largespecialSicilian" name="largespecialSicilian" value=46.70>
+                </form>  
+            </div>
 
         </div>
+        <h2 class="center">Toppings</h2>
         <div class="box3">
-            <h3>Toppings</h3>
+            <form>
+            <label for="Pepperoni"> Pepperoni </label>
+            <input type="checkbox" id="Pepperoni" name="Pepperoni" value=Pepperoni><br>
+            <label for="Sausage"> Sausage </label>
+            <input type="checkbox" id="Sausage" name="Sausage" value=Sausage><br>
+            <label for="Mushrooms"> Mushrooms </label>
+            <input type="checkbox" id="Mushrooms" name="Mushrooms" value=Mushrooms><br>
+            <label for="Onions"> Onions </label>
+            <input type="checkbox" id="Onions" name="Onions" value=Onions><br>
+            <label for="Ham"> Ham </label>
+            <input type="checkbox" id="Ham" name="Ham" value=Ham><br>
+            <label for="Canadian Bacon"> Canadian Bacon</label>
+            <input type="checkbox" id="Canadian Bacon" name="Canadian Bacon" value=CanadianBacon><br>
+            <label for="Pineapple"> Pineapple</label>
+            <input type="checkbox" id="Pineapple" name="Pineapple" value=Pineapple><br> 
+            <label for=" Eggplant">  Eggplant</label>
+            <input type="checkbox" id=" Eggplant" name=" Eggplant" value= Eggplant><br> 
+            <label for="  Tomato & Basil">   Tomato & Basil</label>
+            <input type="checkbox" id=" Tomato & Basil" name="  Tomato & Basil" value=  Tomato&Basil><br> 
+            <label for=" Green Peppers">  Green Peppers</label>
+            <input type="checkbox" id=" Green Peppers" name=" Green Peppers" value=  GreenPeppers><br> 
+            <label for="    Hamburger">     Hamburger</label>
+            <input type="checkbox" id="Hamburger" name=" Hamburger" value= Hamburger><br> 
+            <label for="Spinach"> Spinach</label>
+            <input type="checkbox" id="Spinach " name="Spinach" value= Spinach><br> 
+            <label for=" Artichoke">  Artichoke</label>
+            <input type="checkbox" id=" Artichoke " name=" Artichoke" value= Artichoke><br> 
+            <label for=" Buffalo Chicken">Buffalo Chicken</label>
+            <input type="checkbox" id="Buffalo Chicken" name="Buffalo Chicken" value= BuffaloChicken><br> 
+            <label for="Barbecue Chicken">Barbecue Chicken</label>
+            <input type="checkbox" id="Barbecue Chicken" name="Barbecue Chicken" value=BarbecueChicken><br> 
+            <label for="Anchovies">Anchovies</label>
+            <input type="checkbox" id="Anchovies" name="Anchovies" value=Anchovies><br> 
+            <label for=" Black Olives"> Black Olives</label>
+            <input type="checkbox" id=" Black Olives" name=" Black Olives" value= BlackOlives><br> 
+            <label for="Fresh Garlic">Fresh Garlic</label>
+            <input type="checkbox" id=" Fresh Garlic" name=" Fresh Garlic" value= FreshGarlic><br> 
+            <label for="Zucchini">Zucchini</label>
+            <input type="checkbox" id="Zucchini" name="Zucchini" value= Zucchini><br> 
+        </form>
+              
+    
+
         </div>
         <div class="box4">
-            <h3>Subs</h3>
+            <h2>Subs</h2>
         </div>
         <div class="box5">
-            <h3>Pasta</h3>
+            <h2>Pasta</h2>
         </div>
         <div class="box6">
-            <h3>Salads</h3>
+            <h2>Salads</h2>
         </div>
         <div class="box7">
-            <h3>Dinner Platters</h3>
+            <h2>Dinner Platters</h2>
         </div>
         </main>
     </body>

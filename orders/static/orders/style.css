@@ -12,22 +12,54 @@ main{
 }
 
 .container{
-    
+   
     display: flex;
     flex-direction: column;
     align-self: center;
+
+}
+
+.box1, .box2 {
+    display: flex;
+    flex-direction: row;
+  
+    height: 200px;
    
+    
+}
+
+ .box1 > div {
+    width: 30%;
+    font-size: x-large;
+    padding: 15px;
+  
+  
+    
+}
+
+.box2 > div {
+    width: 30%;
+    font-size: x-large;
+    padding: 15px;
+  
+    
+}
+
+.box3{
+    font-size: x-large;
+    padding: 15px;
 }
 .container>div {
-    width: 50%;
+    width: 90%;
     padding: 20px;
     text-align: center;
+    
 }
 ul {
     list-style-type: none;
 }
 
-input  {
+input [type=text] , input [type=password] input [type=email] {
     width: 200px;
     height: 30px;
     border-radius: 5px;
