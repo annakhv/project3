@@ -1,0 +1,36 @@
+{% load static %}
+<html>
+    <head>
+     
+        <link rel="stylesheet" href="{% static 'orders/style.css' %}"/>
+    </head>
+    <body>
+        <header>
+          <h2 class="center">Pinnochio’s Pizza & Subs</h2>
+        </header>
+        <main>
+            <div>
+                {% if message %}
+                <div>
+                  {{ message }} <br><br>
+                </div>
+                {% endif %}
+              </div>
+              <h3>Register here:</h3>
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <label for="username"> Username</label><br>
+                <input type="text" id="username" name="username"><br>
+                <label for="fname"> Firstname</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                <label for="lname"> Lastname</label><br>
+                <input type="text" id="lname" name="lname"><br>
+                <label for="email"> Email</label><br>
+                <input type="email" id="email" name="email"><br>
+                <label for="password"> Password </label><br>
+                <input type="password" id="password" name="password"><br><br>
+                <input class="button " type="Submit" value="Submit">
+              </form>
+        </main>
+    </body>
+</html>

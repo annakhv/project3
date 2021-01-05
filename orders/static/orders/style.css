@@ -2,10 +2,55 @@
 
 header {
     background-color: rgb(233, 66, 37);
-    min-height: 100px;
+    padding:20px;
 }
 
 main{
     background-color: rgb(247, 98, 72);
     min-height: 500px;
+    padding: 50px;
+}
+
+.container{
+    
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+   
+}
+.container>div {
+    width: 50%;
+    padding: 20px;
+    text-align: center;
+}
+ul {
+    list-style-type: none;
+}
+
+input  {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid linen;
+
+}
+.center {
+    text-align: center;
+}
+
+.button{
+    width: 100px;
+    height: 25px;
+    margin-left: 40px;
+    border-radius: 3px;
+    background-color: lightyellow;
+    border: 2px solid linen;
+    
+}
+
+.button:hover  {
+    background-color:rgb(247, 98, 72);
+
+    border: 2px solid lightsalmon;
+    
 }

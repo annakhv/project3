@@ -6,10 +6,38 @@
     </head>
     <body>
       <header>
-            
+            <h2 class="center">Pinnochio’s Pizza & Subs</h2>
+            <div>
+              <ul>
+                <li>not registered?</li>
+                <li>
+                  <a href="{% url 'registerPage' %}">sign up</a>
+                </li>
+              </ul>
+              
+            </div>
+
       </header>
+     
       <main>
- 
+        <div>
+          {% if message %}
+          <div>
+            {{ message }} <br><br>
+          </div>
+          {% endif %}
+        </div>
+       
+           
+        <form action="{% url 'login' %}" method="post">
+          {% csrf_token %}
+          <label for="username"> Username</label><br>
+          <input type="text" id="username" name="username"><br>
+          <label for="password"> Password </label><br>
+          <input type="password" id="password" name="password"><br><br>
+          <input class="button " type="Submit" value="Submit">
+        </form>
+          
       </main>
     
     </body>
