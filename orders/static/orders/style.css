@@ -24,14 +24,14 @@ section {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    
+    
 }
 .container {
-    width: 15%;
+    width: 22%;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
-  
-
 
 }
 
@@ -78,13 +78,15 @@ section {
 }
 .container > div {
     width: 85%;
-    padding: 20px;
+    padding: 10px;
     text-align: center;
    
     
 }
+
 ul {
     list-style-type: none;
+    
 }
 
 input [type=text] , input [type=password] input [type=email] {
@@ -113,4 +115,9 @@ input [type=text] , input [type=password] input [type=email] {
 
     border: 2px solid lightsalmon;
     
+}
+
+.visibility {
+
+    visibility:hidden;
 }

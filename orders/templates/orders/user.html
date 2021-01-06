@@ -2,6 +2,7 @@
 <html>
     <head>
      
+        <script src="{% static 'orders/scripts.js' %}"></script>  
         <link rel="stylesheet" href="{% static 'orders/style.css' %}"/>
     </head>
     <body>
@@ -16,12 +17,17 @@
             </ul>
         </header>
 
-        <section class="bigcontainer">
+        <section class="bigcontainer" >
        
-            <section class="container cart">
+            <section class="container cart visibility" id="add">
         
                   <h3>your cart</h3> 
-                 
+                
+                  <ol id="itemList">
+
+                  </ol>
+
+                  <input type="submit"  id="orderbutton" class="button visibility"  value ="Place order">
           
             </section>
 
@@ -41,36 +47,36 @@
              </div>
              <div> 
                   small
-                  <form class="regularform">
+                  <form >
                     <label for="smallcheese"> 13.25 </label>
-                    <input type="checkbox" id="smallcheese" name="smallcheese" value=13.25><br>
+                    <input type="checkbox" id="smallcheese"  name="regular" value="small regular pizza with cheese "><br>
                     <label for="smallonetopping"> 14.25 </label>
-                    <input type="checkbox" id="smallonetopping" name="smallonetopping" value=14.25><br>
+                    <input type="checkbox" id="smallonetopping"   name="regular" value="small regular pizza with one topping"><br>
                     <label for="smalltwotoppings"> 15.75 </label>
-                    <input type="checkbox" id="smalltwotoppings" name="smalltwotoppings" value=15.75><br>
+                    <input type="checkbox" id="smalltwotoppings"   name="regular" value="small regular pizza with two toppings"><br>
                     <label for="smallthreetoppings"> 16.75 </label>
-                    <input type="checkbox" id="smallthreetoppings" name="smallthreetoppings" value=16.75><br>
+                    <input type="checkbox" id="smallthreetoppings"   name="regular" value="small regular pizza with three toppings"><br>
                     <label for="smallspecial"> 18.30 </label>
-                    <input type="checkbox" id="smallspecial" name="smallspecial" value=18.30><br>
+                    <input type="checkbox" id="smallspecial"   name="regular" value="small regular special pizza"><br>
                   </form> 
              </div>
              <div>
                  large
-                <form class="regularform">
+                <form >
                   <label for="largecheese"> 18.75 </label>
-                  <input type="checkbox" id="largecheese" name="largecheese" value=18.75><br>
+                  <input type="checkbox" id="largecheese"   name="regular" value="large  sicilian cheese pizza"><br>
                   <label for="largeonetopping"> 20.75 </label>
-                  <input type="checkbox" id="largeonetopping" name="largeonetopping" value=20.75><br>
+                  <input type="checkbox" id="largeonetopping"   name="regular" value="large sicilian pizza with one topping"><br>
                   <label for="largetwotoppings"> 22.75 </label>
-                  <input type="checkbox" id="largetwotoppings" name="largetwotoppings" value=22.75><br>
+                  <input type="checkbox" id="largetwotoppings"  name="regular" value="large sicilian pizza with two toppings"><br>
                   <label for="largethreetoppings"> 24.75 </label>
-                  <input type="checkbox" id="largethreetoppings" name="largethreetoppings" value=24.75><br>
+                  <input type="checkbox" id="largethreetoppings"   name="regular" value="large sicilian pizza with three toppings"><br>
                   <label for="largespecial"> 26.75 </label>
-                  <input type="checkbox" id="largespecial" name="largespecial" value=26.75>
+                  <input type="checkbox" id="largespecial"   name="regular" value="large sicilian special pizza">
                 </form>  
              </div>
              <div>
-                 <input type="submit" class="button" form="regularform" value ="add to cart">
+                 <input type="submit" onclick="addpizza()"  class="button"  value ="add to cart">
              </div>
         </div>
         <h2 class="title">Sicilian Pizza</h2>
@@ -87,7 +93,7 @@
             </div>
             <div>
                 small
-                <form class="sicilianform">
+                <form >
                   <label for="smallcheeseSicilian"> 25.25 </label>
                   <input type="checkbox" id="smallcheeseSicilian" name="smallcheeseSicilian" value=25.25><br>
                   <label for="smalloneitem"> 27.25 </label>
@@ -102,7 +108,7 @@
             </div>
             <div>
                 large
-                <form class="sicilianform">
+                <form >
                   <label for="largecheeseSicilian"> 39.70 </label>
                   <input type="checkbox" id="largecheeseSicilian" name="largecheeseSicilian" value=39.70><br>
                   <label for="largeoneitem"> 41.70 </label>
@@ -116,7 +122,8 @@
                 </form>  
             </div>
            <div>
-            <input type="submit" class="button" form="sicilianform" value ="add to cart">
+             </div>
+             <input type="submit" onclick="addpizza()" class="button"  value ="add to cart">
            </div>
         </div>
         <h2 class="title1" >Toppings</h2>
