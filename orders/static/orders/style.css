@@ -4,7 +4,12 @@ header {
     background-color: rgb(233, 66, 37);
     padding:20px;
 }
+main {
+    background-color: rgb(247, 98, 72);
+    padding: 20px;
+    min-height: 500px;
 
+}
 section {
     background-color: rgb(247, 98, 72);
     padding: 10px;
@@ -89,7 +94,8 @@ ul {
     
 }
 
-input [type=text] , input [type=password] input [type=email] {
+input [type=text],  input [type=password], input [type=email] {
+    
     width: 200px;
     height: 30px;
     border-radius: 5px;
