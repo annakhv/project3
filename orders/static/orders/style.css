@@ -34,9 +34,11 @@ section {
 }
 .container {
     width: 28%;
+    padding:10px;
     display: flex;
     flex-direction: column;
     align-self: flex-start;
+    border-radius: 10px;
 
 }
 
@@ -126,4 +128,10 @@ input [type=text],  input [type=password], input [type=email] {
 .visibility {
 
     visibility:hidden;
+}
+
+img{
+    transform: translateY(12px);
+    width: 60px;
+    margin-left:30px;
 }
