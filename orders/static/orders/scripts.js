@@ -14,7 +14,7 @@ var itemNum=0;//counting the items  in cart object
      itemNum++;
      }
      document.addEventListener('DOMContentLoaded', function (){
-     document.querySelector("#orderbutton").classList.remove("visibility");
+     document.querySelector("#reviewbutton").classList.remove("visibility");
      document.querySelector("#add").classList.remove("visibility");
      });
     }else{
@@ -94,7 +94,7 @@ function addpizza() {
                     document.getElementById("sicilian").disabled = true;  // above comment
                   
               }
-              document.querySelector("#orderbutton").classList.remove("visibility");
+              document.querySelector("#reviewbutton").classList.remove("visibility");
               document.querySelector("#add").classList.remove("visibility");
           
         }   
@@ -117,6 +117,8 @@ function addtopping() {
               let varName="topping"+num;
               cart[itemNum][varName]=topping;
               num++;
+              console.log(num);
+              console.log(numToppings);
           
         }   
    });
@@ -128,7 +130,7 @@ function addtopping() {
    document.getElementById("regular").disabled= false; 
    document.getElementById("sicilian").disabled= false;
    console.log(cart);
-   num =0;
+   num=0;
    itemNum++;
    }
 }
@@ -194,11 +196,19 @@ function remove(value){
 
 
 document.addEventListener('DOMContentLoaded', function() { //listen to review event
+document.querySelector('#reviewbutton').addEventListener('click', function(event){
+             const objectkeys=Object.keys(item);
+             for( i=0; i< objectkeys.length; i++){
+                  meal(cart[objectkeys[i]]);
+
+             }
+
+});
+
+});
+
+document.addEventListener('DOMContentLoaded', function() { //listen to review event
 document.querySelector('#orderbutton').addEventListener('click', function(event){
-          event.preventDefault();
-          console.log("hellooo");
-
+                          console.log("order");
 });
-
 });
-

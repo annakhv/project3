@@ -27,9 +27,10 @@
                   <ol id="itemList">
 
                   </ol>
-
-                  <input type="submit"  id="orderbutton" class="button visibility"  value ="Review order">
-          
+                  <form action="{% url 'review' %}" method="post">
+                    {% csrf_token %}
+                  <input type="submit"  id="reviewbutton" class="button visibility"  value ="Review order">
+                </form>
             </section>
 
         <section class="container menu">
@@ -148,7 +149,7 @@
             <label for=" Eggplant">  Eggplant</label>
             <input type="radio" id=" Eggplant" name="topping" value= Eggplant><br> 
             <label for="  Tomato & Basil">   Tomato & Basil</label>
-            <input type="radio" id=" Tomato & Basil" name="  Tomato & Basil" value= "Tomato & Basil"><br> 
+            <input type="radio" id=" Tomato & Basil" name="topping" value= "Tomato & Basil"><br> 
             <label for=" Green Peppers">  Green Peppers</label>
             <input type="radio" id=" Green Peppers" name="topping" value=  "Green Peppers"><br> 
             <label for="    Hamburger">     Hamburger</label>
@@ -180,11 +181,58 @@
         <div class="box4">
             <h2>Subs</h2>
         </div>
+        <h2 class="title">Pasta</h2>
         <div class="box5">
-            <h2>Pasta</h2>
+           
+            <div id="pastamenu">
+                <ul>
+                    <li>Baked Ziti w/Mozzarella</li>
+                    <li>Baked Ziti w/Meatballs </li>
+                    <li>Baked Ziti w/Chicken</li>
+                </ul>
+              </div>
+            <div >
+            <form >
+                <br>
+                <label for="BakedZitiw/Mozzarella"> 7.00 </label>
+                <input type="radio" id="BakedZitiw/Mozzarella" name="pasta" value="Baked Ziti w/Mozzarella"><br>
+                <label for="BakedZitiw/Meatballs">9.25 </label>
+                <input type="radio" id="BakedZitiw/Meatballs" name="pasta" value="Baked Ziti w/Meatballs"><br>
+                <label for="BakedZitiw/Chicken"> 10.25</label>
+                <input type="radio" id="BakedZitiw/Chicken" name="pasta" value="Baked Ziti w/Chicken"><br>
         </div>
+        <div>
+            <br>
+            <input type="submit" id="pasta"  onclick="addpizza()" class="button" value ="add to cart">
+        </div>
+    </div>
+        <h2 class="title">Salads</h2>
         <div class="box6">
-            <h2>Salads</h2>
+            <div>
+                <ul>
+                    <li>Garden Salad</li>
+                    <li>Greek Salad </li>
+                    <li>Antipasto</li>
+                    <li> Salad w/Tuna </li>
+                     
+                </ul>
+              </div>
+              <div>
+                <form >
+                    <br>
+                    <label for="GardenSalad"> 6.75 </label>
+                    <input type="radio" id="GardenSalad" name="salad" value="Garden Salad"><br>
+                    <label for="GreekSalad">8.75 </label>
+                    <input type="radio" id="Greek Salad" name="salad" value="Greek Salad"><br>
+                    <label for="Antipasto"> 8.75</label>
+                    <input type="radio" id="Antipasto" name="salad" value="Antipasto"><br>
+                    <label for="Saladw/Tuna"> 8.75</label>
+                    <input type="radio" id="Saladw/Tuna" name="salad" value="Salad w/Tuna"><br>
+            </div>
+            <div>
+                <br>
+                <input type="submit" id="salad" onclick="addpizza()"  class="button" value ="add to cart">
+            </div>
         </div>
         <div class="box7">
             <h2>Dinner Platters</h2>

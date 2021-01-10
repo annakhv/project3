@@ -44,3 +44,5 @@ def logout_view(request):
     logout(request)
     return render(request, "orders/login.html", {"message": "logged out"})
       
+def review_view(request):
+    return render(request, "orders/review.html")
