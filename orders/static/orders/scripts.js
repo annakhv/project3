@@ -7,6 +7,7 @@ var cart = {}//empty cart object
 var itemNum=0;//counting the items  in cart object
 }else{
      var cart = JSON.parse(localStorage.getItem('cart'));
+     if (Object.keys(cart).length ){
      for(itemNum in cart){ //open up object contents
      item=cart[itemNum]; 
      meal(item) 
@@ -16,7 +17,9 @@ var itemNum=0;//counting the items  in cart object
      document.querySelector("#orderbutton").classList.remove("visibility");
      document.querySelector("#add").classList.remove("visibility");
      });
-    
+    }else{
+         itemNum=0;
+    }
 }
 
 
@@ -30,8 +33,8 @@ var itemNum=0;//counting the items  in cart object
               const a=document.createElement("a"); //create links for deletion for specific item
               const linktext=document.createTextNode("Delete"); 
               a.appendChild(linktext);
-              a.href =itemNum; //to know wich item to delete
-               a.setAttribute('data-number', itemNum);
+              a.href ="";
+               a.setAttribute('data-number', itemNum);//to know which item to delete
                a.setAttribute('class', 'deletelink');
               li.innerHTML=item[objectkeys[i]];
               li.appendChild(a);
@@ -63,8 +66,8 @@ function addpizza() {
               const a=document.createElement("a"); //create links for deletion for specific item
               const linktext=document.createTextNode("Delete"); 
               a.appendChild(linktext);
-              a.href =itemNum; //to know wich item to delete
-              a.setAttribute('data-number', itemNum);
+              a.href ="";
+              a.setAttribute('data-number', itemNum); //to know wich item to delete
               a.setAttribute('class', 'deletelink');
               li.innerHTML=pizza;
               li.appendChild(a);
@@ -76,7 +79,6 @@ function addpizza() {
               cart[itemNum]=item;
               itemNum++;
               update()
-              console.log(cart);
               if (pizza.includes("topping")){
                     itemNum-- //we have to add toppings so we need to stay at the same pizza number
                     const number= count(pizza);
@@ -134,9 +136,6 @@ function addtopping() {
 
 
 
-
-
-
 function count(pizza){
 
  if (pizza.includes("one")) {
@@ -153,19 +152,53 @@ function update() {
 localStorage.setItem("cart", JSON.stringify(cart));
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() { //listen to delete event
 document.querySelector('#itemList').addEventListener('click', function(event){
-                          event.preventDefault();
-                          links= document.querySelectorAll('.deletelink')
-                          console.log(links);
+          event.preventDefault();
+          links= document.querySelectorAll('.deletelink');
+          links.forEach (function(link) {
+               link.onclick=function(){
+                    num=link.getAttribute("data-number");
+                    val=cart[num];
+                    remove(val); //delete this val from front end
+                    delete cart[num];
+                    update()
+                    if (Object.keys(cart).length === 0){ //delete graphics for cart if cart is empty
+                    console.log("works");
+                          document.querySelector("#orderbutton").classList.add("visibility");
+                          document.querySelector("#add").classList.add("visibility");
+                    }
+              
+              
+
+               }
     });
 
 });
+});
 
-
-function ReviewOrder(){
-
+function remove(value){
+ vals=document.querySelector("#itemList");
+ list=vals.childNodes;
+ for(i=list.length-1; i>=0; i--){
+      element=list[i].innerHTML;
+      if (element.includes(value['name'])){
+           vals.removeChild(list[i+1]);//delete delete link as well
+           vals.removeChild(list[i]);
+           break;
+      }
+      
+ }
 
 }
 
+
+document.addEventListener('DOMContentLoaded', function() { //listen to review event
+document.querySelector('#orderbutton').addEventListener('click', function(event){
+          event.preventDefault();
+          console.log("hellooo");
+
+});
+
+});
 
