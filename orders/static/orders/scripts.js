@@ -79,7 +79,7 @@ function addpizza() {
               cart[itemNum]=item;
               itemNum++;
               update()
-              if (pizza.includes("topping")){
+              if (!pizza.includes("0")){
                     itemNum-- //we have to add toppings so we need to stay at the same pizza number
                     const number= count(pizza);
                     numToppings=number;
@@ -140,9 +140,9 @@ function addtopping() {
 
 function count(pizza){
 
- if (pizza.includes("one")) {
+ if (pizza.includes("1")) {
    return 1;
- }else if ( pizza.includes("two")) {
+ }else if ( pizza.includes("2")) {
       return 2;
  }else{
       return 3;

@@ -39,43 +39,42 @@
         <div class="box1">
             
              <div>
-               <ul>
-                   <li>Cheese</li>
-                   <li>1 topping  </li>
-                   <li>2 toppings</li>
-                   <li>3 toppings</li>
-                   <li>Special</li>
-               </ul>
+               <br>
+                <ul>
+                    {% for pizza in pizza %}
+                    {%if pizza.size == "small" and pizza.name == "Regular Pizza" %}
+                    <li>
+                      {{pizza.toppingQuantity}} Toppings
+                   </li>
+                   {% endif %}
+                 {% endfor %}
+            </ul>
              </div>
              <div> 
-                  small
-                  <form >
-                    <label for="smallcheese"> 13.25 </label>
-                    <input type="radio" id="smallcheese"  name="regular" value="small regular pizza with cheese "><br>
-                    <label for="smallonetopping"> 14.25 </label>
-                    <input type="radio" id="smallonetopping"   name="regular" value="small regular pizza with one topping"><br>
-                    <label for="smalltwotoppings"> 15.75 </label>
-                    <input type="radio" id="smalltwotoppings"   name="regular" value="small regular pizza with two toppings"><br>
-                    <label for="smallthreetoppings"> 16.75 </label>
-                    <input type="radio" id="smallthreetoppings"   name="regular" value="small regular pizza with three toppings"><br>
-                    <label for="smallspecial"> 18.30 </label>
-                    <input type="radio" id="smallspecial"   name="regular" value="small regular  pizza special"><br>
-                  </form> 
+                small
+                <ul>
+                    {% for pizza in pizza%}
+                    {%if pizza.size == "small" and  pizza.name == "Regular Pizza" %}
+                    <li>
+                        <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
+                        <input type="radio" id="{{name.topping}}" name="regular" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} topping" >
+                   </li>
+                   {%endif%}
+                 {% endfor %}
+            </ul>
              </div>
              <div>
-                 large
-                <form >
-                  <label for="largecheese"> 18.75 </label>
-                  <input type="radio" id="largecheese"   name="regular" value="large  regular  pizza with cheese"><br>
-                  <label for="largeonetopping"> 20.75 </label>
-                  <input type="radio" id="largeonetopping"   name="regular" value="large regular pizza with one topping"><br>
-                  <label for="largetwotoppings"> 22.75 </label>
-                  <input type="radio" id="largetwotoppings"  name="regular" value="large regular pizza with two toppings"><br>
-                  <label for="largethreetoppings"> 24.75 </label>
-                  <input type="radio" id="largethreetoppings"   name="regular" value="large regular pizza with three toppings"><br>
-                  <label for="largespecial"> 26.75 </label>
-                  <input type="radio" id="largespecial"   name="regular" value="large regular  pizza special ">
-                </form>  
+               large
+                <ul>
+                    {% for pizza in pizza%}
+                    {%if pizza.size == "large" and  pizza.name == "Regular Pizza" %}
+                    <li>
+                        <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
+                        <input type="radio" id="{{name.topping}}" name="regular" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} topping" >
+                   </li>
+                   {%endif%}
+                 {% endfor %}
+            </ul>
              </div>
              <div>
                  <input type="submit" id="regular" onclick="addpizza()"  class="button"  value ="add to cart">
@@ -85,43 +84,42 @@
         <div class="box2">
            
             <div>
+                <br>
                 <ul>
-                    <li>Cheese</li>
-                    <li>1 item  </li>
-                    <li>2 items</li>
-                    <li>3 items</li>
-                    <li>Special</li>
-                </ul>
+                    {% for pizza in pizza %}
+                    {%if pizza.size == "small" and pizza.name == "Sicilian Pizza" %}
+                    <li>
+                      {{pizza.toppingQuantity}} items
+                   </li>
+                   {% endif %}
+                 {% endfor %}
+            </ul>
             </div>
             <div>
                 small
-                <form >
-                  <label for="smallcheeseSicilian"> 25.25 </label>
-                  <input type="radio" id="smallcheeseSicilian" name="sicilian" value="small sicilian pizza with cheese "><br>
-                  <label for="smalloneitem"> 27.25 </label>
-                  <input type="radio" id="smalloneitem" name="sicilian" value="small sicilian pizza with one topping" ><br>
-                  <label for="smalltwoitems"> 29.75 </label>
-                  <input type="radio" id="smalltwoitems" name="sicilian" value="small sicilian pizza with two toppings" ><br>
-                  <label for="smallthreeitems"> 31.25 </label>
-                  <input type="radio" id="smallthreeitems" name="sicilian" value="small sicilian pizza with three toppings" ><br>
-                  <label for="smallspecialSicilian"> 32.25 </label>
-                  <input type="radio" id="smallspecialSicilian" name="sicilian" value="small sicilian pizza special" >
-                </form> 
+                <ul>
+                    {% for pizza in pizza%}
+                    {%if pizza.size == "small" and  pizza.name == "Sicilian Pizza" %}
+                    <li>
+                        <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
+                        <input type="radio" id="{{name.topping}}" name="sicilian" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} topping" >
+                   </li>
+                   {%endif%}
+                 {% endfor %}
+            </ul>
             </div>
             <div>
                 large
-                <form >
-                  <label for="largecheeseSicilian"> 39.70 </label>
-                  <input type="radio" id="largecheeseSicilian" name="sicilian" value="large sicilian pizza with cheese" ><br>
-                  <label for="largeoneitem"> 41.70 </label>
-                  <input type="radio" id="largeoneitem" name="sicilian" value="large sicilian pizza with one topping"><br>
-                  <label for="largetwoitems"> 43.70 </label>
-                  <input type="radio" id="largetwoitems" name="sicilian"value="large sicilian pizza with two toppings"><br>
-                  <label for="largethreeitems"> 45.70 </label>
-                  <input type="radio" id="largethreeitems" name="sicilian" value="large sicilian pizza with three toppings"><br>
-                  <label for="largespecialSicilian"> 46.70 </label>
-                  <input type="radio" id="largespecialSicilian" name="sicilian" value="large sicilian pizza special">
-                </form>  
+                <ul>
+                    {% for pizza in pizza%}
+                    {%if pizza.size == "large" and  pizza.name == "Sicilian Pizza" %}
+                    <li>
+                        <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
+                        <input type="radio" id="{{name.topping}}" name="sicilian" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} topping" >
+                   </li>
+                   {%endif%}
+                 {% endfor %}
+            </ul> 
             </div>
            <div>
              </div>
@@ -131,75 +129,87 @@
         <h2 class="title1" >Toppings</h2>
         <div class="box3">
             <div>
-            <form >
-            <label for="Pepperoni"> Pepperoni </label>
-            <input type="radio" id="Pepperoni" name="topping" value=Pepperoni><br>
-            <label for="Sausage"> Sausage </label>
-            <input type="radio" id="Sausage" name="topping" value=Sausage><br>
-            <label for="Mushrooms"> Mushrooms </label>
-            <input type="radio" id="Mushrooms" name="topping" value=Mushrooms><br>
-            <label for="Onions"> Onions </label>
-            <input type="radio" id="Onions" name="topping" value=Onions><br>
-            <label for="Ham"> Ham </label>
-            <input type="radio" id="Ham" name="topping" value=Ham><br>
-            <label for="Canadian Bacon"> Canadian Bacon</label>
-            <input type="radio" id="Canadian Bacon" name="topping" value="Canadian Bacon"><br>
-            <label for="Pineapple"> Pineapple</label>
-            <input type="radio" id="Pineapple" name="topping" value=Pineapple><br> 
-            <label for=" Eggplant">  Eggplant</label>
-            <input type="radio" id=" Eggplant" name="topping" value= Eggplant><br> 
-            <label for="  Tomato & Basil">   Tomato & Basil</label>
-            <input type="radio" id=" Tomato & Basil" name="topping" value= "Tomato & Basil"><br> 
-            <label for=" Green Peppers">  Green Peppers</label>
-            <input type="radio" id=" Green Peppers" name="topping" value=  "Green Peppers"><br> 
-            <label for="    Hamburger">     Hamburger</label>
-            <input type="radio" id="Hamburger" name="topping" value= Hamburger><br> 
-            <label for="Spinach"> Spinach</label>
-            <input type="radio" id="Spinach " name="topping" value= Spinach><br> 
-            <label for=" Artichoke">  Artichoke</label>
-            <input type="radio" id=" Artichoke " name=" topping" value= Artichoke><br> 
-            <label for=" Buffalo Chicken">Buffalo Chicken</label>
-            <input type="radio" id="Buffalo Chicken" name="topping" value= "Buffalo Chicken"><br> 
-            <label for="Barbecue Chicken">Barbecue Chicken</label>
-            <input type="radio" id="Barbecue Chicken" name="topping" value="Barbecue Chicken"><br> 
-            <label for="Anchovies">Anchovies</label>
-            <input type="radio" id="Anchovies" name="topping" value=Anchovies><br> 
-            <label for=" Black Olives"> Black Olives</label>
-            <input type="radio" id=" Black Olives" name="topping" value= "Black Olives"><br> 
-            <label for="Fresh Garlic">Fresh Garlic</label>
-            <input type="radio" id=" Fresh Garlic" name=" topping" value= "Fresh Garlic"><br> 
-            <label for="Zucchini">Zucchini</label>
-            <input type="radio" id="Zucchini" name="topping" value= Zucchini><br> 
-        </form>
-              
+                <ul>
+                    {% for name in toppings%}
+                    <li>
+                        <label for="{{name.topping}}" > {{name.topping}}</label>
+                        <input type="radio" id="{{name.topping}}" name="topping" value="{{name.topping}}">
+                   </li>
+                 {% endfor %}
+            </ul>
         </div>
         <div>
             <input type="submit" id="topping" onclick="addtopping()"  class="button" value ="add to cart">
         </div>
 
         </div>
+        <h2 class="title1">Subs</h2>
         <div class="box4">
-            <h2>Subs</h2>
+            <div>
+                <br>
+                <ul>
+                    {% for sub in subs%}
+                    {%if sub.subSize == "large" %}
+                    <li>
+                      {{sub.subName}}
+                   </li>
+                   {%endif%}
+                   {% endfor %}
+            </ul>
+            </div>
+            <div>
+            small
+            <ul>
+                {% for sub in subs%}
+                {%if sub.subSize == "small" %}
+                <li>
+                    <label for="{{sub.subName}}" > {{sub.price}}</label>
+                    <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}}">
+               </li>
+               {% endif %}
+               {% endfor %}
+        
+        </ul>
+    </div>
+            <div>
+                large
+                <ul>
+                    {% for sub in subs%}
+                    {%if sub.subSize == "large" %}
+                    <li>
+                        <label for="{{sub.subName}}" > {{sub.price}}</label>
+                        <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}}">
+                   </li>
+                   {% endif %}
+                 {% endfor %}
+            </ul>
+            </div>
+            <div>
+                <br>
+                <input type="submit" id="sub"  onclick="addpizza()" class="button" value ="add to cart">
+            </div>
         </div>
         <h2 class="title">Pasta</h2>
         <div class="box5">
            
             <div id="pastamenu">
                 <ul>
-                    <li>Baked Ziti w/Mozzarella</li>
-                    <li>Baked Ziti w/Meatballs </li>
-                    <li>Baked Ziti w/Chicken</li>
-                </ul>
+                    {% for pasta in pasta %}
+                    <li>
+                      {{pasta.pastaName}} 
+                   </li>
+                 {% endfor %}
+            </ul>
               </div>
             <div >
-            <form >
-                <br>
-                <label for="BakedZitiw/Mozzarella"> 7.00 </label>
-                <input type="radio" id="BakedZitiw/Mozzarella" name="pasta" value="Baked Ziti w/Mozzarella"><br>
-                <label for="BakedZitiw/Meatballs">9.25 </label>
-                <input type="radio" id="BakedZitiw/Meatballs" name="pasta" value="Baked Ziti w/Meatballs"><br>
-                <label for="BakedZitiw/Chicken"> 10.25</label>
-                <input type="radio" id="BakedZitiw/Chicken" name="pasta" value="Baked Ziti w/Chicken"><br>
+                <ul>
+                    {% for pasta in pasta %}
+                    <li>
+                        <label for="{{pasta.pastaName}}" > {{pasta.price}}</label>
+                        <input type="radio" id="{{pasta.pastaName}}" name="pasta" value="{{pasta.pastaName}}">
+                   </li>
+                 {% endfor %}
+            </ul>
         </div>
         <div>
             <br>
@@ -210,32 +220,77 @@
         <div class="box6">
             <div>
                 <ul>
-                    <li>Garden Salad</li>
-                    <li>Greek Salad </li>
-                    <li>Antipasto</li>
-                    <li> Salad w/Tuna </li>
-                     
-                </ul>
+                    {% for salad in salads %}
+                    <li>
+                      {{salad.saladName}} 
+                   </li>
+                 {% endfor %}
+            </ul>
               </div>
               <div>
-                <form >
-                    <br>
-                    <label for="GardenSalad"> 6.75 </label>
-                    <input type="radio" id="GardenSalad" name="salad" value="Garden Salad"><br>
-                    <label for="GreekSalad">8.75 </label>
-                    <input type="radio" id="Greek Salad" name="salad" value="Greek Salad"><br>
-                    <label for="Antipasto"> 8.75</label>
-                    <input type="radio" id="Antipasto" name="salad" value="Antipasto"><br>
-                    <label for="Saladw/Tuna"> 8.75</label>
-                    <input type="radio" id="Saladw/Tuna" name="salad" value="Salad w/Tuna"><br>
+                <ul>
+                    {% for salad in salads %}
+                    <li>
+                        <label for="{{salad.saladName}}" > {{salad.price}}</label>
+                        <input type="radio" id="{{salad.saladName}}" name="salad" value="{{salad.saladName}}">
+                   </li>
+                 {% endfor %}
+            </ul>
             </div>
             <div>
                 <br>
                 <input type="submit" id="salad" onclick="addpizza()"  class="button" value ="add to cart">
             </div>
         </div>
+        <h2 class="title">Dinner Platters</h2>
         <div class="box7">
-            <h2>Dinner Platters</h2>
+           
+          
+            <div>
+                <br>
+                <ul>
+                    {% for platter in platters %}
+                    {%if platter.size == "small" %}
+                    <li>
+                      {{platter.dinnerplatter}} 
+                   </li>
+                   {% endif %}
+                 {% endfor %}
+            </ul>
+            </div>
+           
+            <div>
+                small
+            <ul>
+                {% for platter in platters %}
+                {%if platter.size == "small" %}
+                <li>
+                    <label for="{{platter.dinnerplatter}}" > {{platter.price}}</label>
+                    <input type="radio" id="{{platter.dinnerplatter}}" name="platter" value="{{platter.dinnerplatter}}">
+               </li>
+               {% endif %}
+             {% endfor %}
+        </ul>
+    </div>
+              
+            <div>
+                large
+                <ul>
+                    {% for platter in platters %}
+                    {%if platter.size == "large" %}
+                    <li>
+                        <label for="{{platter.dinnerplatter}}" > {{platter.price}}</label>
+                        <input type="radio" id="{{platter.dinnerplatter}}" name="platter" value="{{platter.dinnerplatter}}">
+                   </li>
+                   {% endif %}
+                 {% endfor %}
+            </ul>
+            </div>
+            <div>
+                <br>
+                <input type="submit" id="platter" onclick="addpizza()"  class="button" value ="add to cart">
+            </div>
+        </div>
         </div>
     </section>
 </section>

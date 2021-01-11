@@ -3,12 +3,20 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
+from .models import DinnerPlatters, Salads, pasta, pizza, toppings, subs
 
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "orders/login.html", {"message": None})
     context ={
-        "user" : request.user
+        "user" : request.user,
+        "platters": DinnerPlatters.objects.all(),
+        "salads" : Salads.objects.all(),
+         "pasta" :pasta.objects.all(),
+         "pizza" : pizza.objects.all(),
+         "toppings": toppings.objects.all(),
+         "subs" : subs.objects.all()
+      
     }
     return render(request, "orders/user.html", context)
 
@@ -38,6 +46,7 @@ def login_view(request):
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
+        
         return render(request, "orders/login.html", {"message": "Invalid credentials"})
 
 def logout_view(request):

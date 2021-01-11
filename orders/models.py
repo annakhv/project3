@@ -6,7 +6,7 @@ class pizza(models.Model):
     toppingQuantity=models.IntegerField()
     price=models.FloatField()
     def __str__(self):
-          return f"{self.name} pizza  {self.size} with {self.toppingQuantity} costs {self.price} "
+          return f"{self.name}  {self.size} with {self.toppingQuantity} topping costs {self.price} "
   
 class toppings(models.Model):
     topping=models.CharField(max_length=64)
