@@ -75,8 +75,9 @@
                    {%endif%}
                  {% endfor %}
             </ul>
-             </div>
+             </div >
              <div>
+                 <br>
                  <input type="submit" id="regular" onclick="addpizza()"  class="button"  value ="add to cart">
              </div>
         </div>
@@ -122,7 +123,7 @@
             </ul> 
             </div>
            <div>
-             </div>
+            <br>
              <input type="submit" id="sicilian" onclick="addpizza()" class="button"  value ="add to cart">
            </div>
         </div>
@@ -139,13 +140,14 @@
             </ul>
         </div>
         <div>
+            <br>
             <input type="submit" id="topping" onclick="addtopping()"  class="button" value ="add to cart">
         </div>
 
         </div>
         <h2 class="title1">Subs</h2>
         <div class="box4">
-            <div>
+            <div class="grow">
                 <br>
                 <ul>
                     {% for sub in subs%}
@@ -153,38 +155,49 @@
                     <li>
                       {{sub.subName}}
                    </li>
+                  
                    {%endif%}
                    {% endfor %}
             </ul>
             </div>
-            <div>
+            <div class="shrink">
             small
             <ul>
                 {% for sub in subs%}
                 {%if sub.subSize == "small" %}
                 <li>
+                    {%if sub.price != -1.0 %} <!--we need to incorporate both small and large menu items even if there no for given item, this is  to have symmetry , for this reason we can use -1 value for signaling that there is no item for this size in the menu-->
                     <label for="{{sub.subName}}" > {{sub.price}}</label>
                     <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}}">
+                    {%else%}
+                    <br>
+                    {%endif%}
                </li>
+             
                {% endif %}
                {% endfor %}
         
         </ul>
     </div>
-            <div>
+            <div class="shrink">
                 large
                 <ul>
                     {% for sub in subs%}
-                    {%if sub.subSize == "large" %}
+                    {%if sub.subSize == "large"  %}
                     <li>
+                        {%if sub.price != -1.0 %}
                         <label for="{{sub.subName}}" > {{sub.price}}</label>
                         <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}}">
+                        {%else%}
+                           <br>
+                        {% endif %}
                    </li>
+                   
                    {% endif %}
                  {% endfor %}
             </ul>
             </div>
-            <div>
+            <div class="shrink">
                 <br>
                 <input type="submit" id="sub"  onclick="addpizza()" class="button" value ="add to cart">
             </div>
@@ -294,5 +307,6 @@
         </div>
     </section>
 </section>
+
     </body>
 </html>

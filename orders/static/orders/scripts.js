@@ -56,6 +56,7 @@ var itemNum=0;//counting the items  in cart object
 
 
 var numToppings; // the number of toppings the pizza should have 
+var num;
 function addpizza() {
    let id=event.srcElement.id
    var all=document.querySelectorAll(`input[name=${id}]`);
@@ -79,10 +80,11 @@ function addpizza() {
               cart[itemNum]=item;
               itemNum++;
               update()
-              if (!pizza.includes("0")){
+              if (pizza.includes("1") || pizza.includes("2") || pizza.includes("3")){
                     itemNum-- //we have to add toppings so we need to stay at the same pizza number
                     const number= count(pizza);
                     numToppings=number;
+                    num=0;
                     let h3=document.createElement("h3");
                     h3.classList.add("warning");
                     h3.innerHTML=`add ${number} toppings before moving on!`;
@@ -103,7 +105,7 @@ function addpizza() {
 
 }
 
-var num=0;
+
 function addtopping() {
  let id=event.srcElement.id
  const all=document.querySelectorAll(`input[name=${id}]`);
