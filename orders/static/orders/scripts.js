@@ -92,8 +92,7 @@ function addpizza() {
                     let ul=document.createElement("ul");
                     li.appendChild(ul);
                     ul.classList.add("withtopping");
-                    document.getElementById("regular").disabled = true; //disable alll buttons until correct numbe rof toppings were added
-                    document.getElementById("sicilian").disabled = true;  // above comment
+                    disablebuttons()
                   
               }
               document.querySelector("#reviewbutton").classList.remove("visibility");
@@ -129,8 +128,7 @@ function addtopping() {
    document.querySelector(".warning").innerHTML="";
    document.querySelector(".warning").classList.remove("warning");
    document.querySelector(".withtopping").classList.remove("withtopping");
-   document.getElementById("regular").disabled= false; 
-   document.getElementById("sicilian").disabled= false;
+   enablebuttons()
    console.log(cart);
    num=0;
    itemNum++;
@@ -169,7 +167,7 @@ document.querySelector('#itemList').addEventListener('click', function(event){
                     update()
                     if (Object.keys(cart).length === 0){ //delete graphics for cart if cart is empty
                     console.log("works");
-                          document.querySelector("#orderbutton").classList.add("visibility");
+                          document.querySelector("#reviewbutton").classList.add("visibility");
                           document.querySelector("#add").classList.add("visibility");
                     }
               
@@ -214,3 +212,24 @@ document.querySelector('#orderbutton').addEventListener('click', function(event)
                           console.log("order");
 });
 });
+
+function disablebuttons(){
+      document.getElementById("regular").disabled = true; //disable alll buttons until correct numbe rof toppings were added
+     document.getElementById("sicilian").disabled = true; 
+     document.getElementById("sub").disabled = true; 
+     document.getElementById("platter").disabled = true; 
+      document.getElementById("pasta").disabled = true; 
+       document.getElementById("salad").disabled = true; 
+
+}
+
+
+function enablebuttons(){
+      document.getElementById("regular").disabled = false; //disable alll buttons until correct numbe rof toppings were added
+     document.getElementById("sicilian").disabled = false; 
+     document.getElementById("sub").disabled = false; 
+     document.getElementById("platter").disabled = false; 
+      document.getElementById("pasta").disabled = false; 
+       document.getElementById("salad").disabled = false; 
+
+}

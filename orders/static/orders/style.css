@@ -1,5 +1,13 @@
 
 
+h5{
+    padding: unset;
+    font: unset;
+    margin: unset;
+    margin-right: -100px;
+   
+}
+
 header {
     background-color: rgb(233, 66, 37);
     padding:20px;
@@ -16,7 +24,7 @@ section {
 }
 
 .title1{
-    margin-left: 220px;
+    margin-left: 200px;
 }
 .title2 {
     margin-left: 320px;
@@ -95,7 +103,7 @@ section {
 
 
 .shrink{
-    flex-shrink: 3;
+    flex-shrink: 1;
 }
 .grow{
     flex-grow: 1;
@@ -144,7 +152,7 @@ ul {
 }
 li{
     width:250px;
-    padding: 2px;
+    
     
 }
 
