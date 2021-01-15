@@ -69,10 +69,10 @@ function addpizza() {
    all.forEach(element => {
         if( element.checked === true){
               const pizza=element.value;
-              console.log(pizza);
-              const pricePizza=price(pizza);
-              total+=pricePizza; //calculate total price
-              console.log(total);
+             // const pricePizza=price(pizza)  
+              var pos = pizza.lastIndexOf(" ");
+              price=pizza.slice(pos+1);
+              total+=parseFloat(price); //calculate total price
              const li=document.createElement("li");
               const a=document.createElement("a"); //create links for deletion for specific item
               const linktext=document.createTextNode("Delete"); 
@@ -147,14 +147,14 @@ function addtopping() {
 }
 
 
-function price(pizza){
+/*function price(pizza){  //this function did not work and i have no idea why , so i had to put this code by hand in two places
      console.log("works here");
      var pos = pizza.lastIndexOf(" ");
      price=pizza.slice(pos+1);
-     result=parseFloat(price);
-     return result;
+  
+     return price;
 }
-
+*/ 
 function count(pizza){
      var pos = pizza.lastIndexOf(" ");
      pizzaVal=pizza.substring(0,pos);
@@ -200,9 +200,12 @@ document.querySelector('#itemList').addEventListener('click', function(event){
 });
 
 function remove(value){
-   pr=price(value['name'])
-   total=total-pr;
-   document.querySelector("#totalprice").innerHTML=total;  
+ //  pr=price(value['name'])
+   var pos =value['name'].lastIndexOf(" ");
+   price=value['name'].slice(pos+1);
+   console.log(price);
+   total-=parseFloat(price);
+   document.querySelector("#totalprice").innerHTML=`Total: ${total}`;  
    if ( value['name'].includes("topping") & document.querySelector(".warning") != null ){   // when you are deleting pizza for which no toppings were added
             console.log("deleting pizaa");
             document.querySelector(".warning").innerHTML="";
@@ -240,7 +243,11 @@ document.querySelector('#reviewbutton').addEventListener('click', function(event
 
 document.addEventListener('DOMContentLoaded', function() { //listen to review event
 document.querySelector('#orderbutton').addEventListener('click', function(event){
-                          console.log("order");
+           event.preventDefault();
+           orderNumber=Math.floor(Math.random()* 1000000);
+           document.querySelector("#ordercomplete").innerHTML=`Order with order-number: #${orderNumber} has been placed`
+          sendToServer()
+          console.log("order");
 });
 });
 
@@ -262,5 +269,10 @@ function enablebuttons(){
      document.getElementById("platter").disabled = false; 
       document.getElementById("pasta").disabled = false; 
        document.getElementById("salad").disabled = false; 
+
+}
+
+function sendToServer(){ //sendng order details to server and empty the cart
+
 
 }
