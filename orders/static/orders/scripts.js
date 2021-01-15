@@ -58,11 +58,17 @@ var itemNum=0;//counting the items  in cart object
 var numToppings; // the number of toppings the pizza should have 
 var num;
 function addpizza() {
-   let id=event.srcElement.id
+   var id=event.srcElement.id
    var all=document.querySelectorAll(`input[name=${id}]`);
+   if (id == "sub"){
+      addtosub(all)
+   }
    all.forEach(element => {
         if( element.checked === true){
               const pizza=element.value;
+              if (id == "sub"){ //check for subadds
+                 addtosub(pizza)
+              }
              const li=document.createElement("li");
               const a=document.createElement("a"); //create links for deletion for specific item
               const linktext=document.createTextNode("Delete"); 
@@ -80,7 +86,7 @@ function addpizza() {
               cart[itemNum]=item;
               itemNum++;
               update()
-              if (pizza.includes("1") || pizza.includes("2") || pizza.includes("3")){
+              if (pizza.includes("topping")){
                     itemNum-- //we have to add toppings so we need to stay at the same pizza number
                     const number= count(pizza);
                     numToppings=number;
@@ -136,7 +142,9 @@ function addtopping() {
 }
 
 
-
+function addtosub(sub){
+     console.log(sub)
+}
 
 function count(pizza){
 
@@ -160,10 +168,10 @@ document.querySelector('#itemList').addEventListener('click', function(event){
           links= document.querySelectorAll('.deletelink');
           links.forEach (function(link) {
                link.onclick=function(){
-                    num=link.getAttribute("data-number");
-                    val=cart[num];
+                    number=link.getAttribute("data-number");
+                    val=cart[number];
                     remove(val); //delete this val from front end
-                    delete cart[num];
+                    delete cart[number];
                     update()
                     if (Object.keys(cart).length === 0){ //delete graphics for cart if cart is empty
                     console.log("works");
@@ -180,6 +188,14 @@ document.querySelector('#itemList').addEventListener('click', function(event){
 });
 
 function remove(value){
+     
+   if ( value['name'].includes("topping") & document.querySelector(".warning") != null ){   // when you are deleting pizza for which no toppings were added
+            console.log("deleting pizaa");
+            document.querySelector(".warning").innerHTML="";
+            document.querySelector(".warning").classList.remove("warning");
+            enablebuttons() 
+           }   
+           
  vals=document.querySelector("#itemList");
  list=vals.childNodes;
  for(i=list.length-1; i>=0; i--){
@@ -187,6 +203,7 @@ function remove(value){
       if (element.includes(value['name'])){
            vals.removeChild(list[i+1]);//delete delete link as well
            vals.removeChild(list[i]);
+         
            break;
       }
       

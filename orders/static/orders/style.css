@@ -164,6 +164,22 @@ input [type=text],  input [type=password], input [type=email] {
     border: 2px solid linen;
 
 }
+
+select{
+    background-color:rgb(247, 98, 72);
+    border-radius: 2px;
+    width:70px;
+    color:black;
+    border: 1px solid rgb(247, 98, 72);
+    overflow-y:auto;
+   
+ 
+    
+}
+select:-webkit-scrollbar { 
+    display: none;
+   
+}
 .center {
     text-align: center;
 }
@@ -173,9 +189,24 @@ input [type=text],  input [type=password], input [type=email] {
     height: 25px;
     margin-left: 40px;
     border-radius: 3px;
-    background-color: lightyellow;
-    border: 2px solid linen;
+    background-color: lightsalmon;
+    border: 2px solid lightsalmon;
     
+}
+
+.round{
+    padding:10px;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+    border: 2px solid lightsalmon;
+    background-color: lightsalmon;
+    outline:none;
+   
+}
+select:hover{
+
+    border: 2px solid lightsalmon;
 }
 
 .button:hover  {

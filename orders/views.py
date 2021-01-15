@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
-from .models import DinnerPlatters, Salads, pasta, pizza, toppings, subs
+from .models import DinnerPlatters, Salads, pasta, pizza, toppings, subs, subsAdds
 
 def index(request):
     if not request.user.is_authenticated:
@@ -15,9 +15,11 @@ def index(request):
          "pasta" :pasta.objects.all(),
          "pizza" : pizza.objects.all(),
          "toppings": toppings.objects.all(),
-         "subs" : subs.objects.all()
+         "subs" : subs.objects.all(),
+         "subadds" : subsAdds.objects.all()
       
     }
+   
     return render(request, "orders/user.html", context)
 
 def registerPage_view(request):
