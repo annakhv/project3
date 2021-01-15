@@ -27,6 +27,7 @@
                   <ol id="itemList">
 
                   </ol>
+                  <h3 id="totalprice" class="center"> </h3>
                   <form action="{% url 'review' %}" method="post">
                     {% csrf_token %}
                   <input type="submit"  id="reviewbutton" class="button visibility"  value ="Review order">
@@ -63,10 +64,10 @@
                     <li>
                         {%if pizza.toppingQuantity != 0 %}
                         <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="regular" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="regular" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings {{pizza.price}}" >
                         {%else%}
                         <label for="{{pizza.size}}{{pizza.name}} with Cheese" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="regular" value="{{pizza.size}} {{pizza.name}} with Cheese" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="regular" value="{{pizza.size}} {{pizza.name}} with Cheese {{pizza.price}}" >
                         {%endif%}
                    </li>
                    {%endif%}
@@ -81,10 +82,10 @@
                     <li>
                         {%if pizza.toppingQuantity != 0 %}
                         <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="regular" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="regular" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings {{pizza.price}}" >
                         {%else%}
                         <label for="{{pizza.size}}{{pizza.name}} with Cheese" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="regular" value="{{pizza.size}} {{pizza.name}} with Cheese" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="regular" value="{{pizza.size}} {{pizza.name}} with Cheese {{pizza.price}}" >
                         {%endif%}
                    </li>
                    {%endif%}
@@ -93,7 +94,7 @@
              </div >
              <div>
                  <br>
-                 <input type="submit" id="regular" onclick="addpizza()"  class="button round"  value ="add to cart">
+                 <input type="submit" id="regular" onclick="addpizza()"  class="button round"  value ="add pizza">
              </div>
         </div>
         <h2 class="title">Sicilian Pizza</h2>
@@ -125,10 +126,11 @@
                     <li>
                         {%if pizza.toppingQuantity != 0 %}
                         <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="sicilian" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="sicilian" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings {{pizza.price}}" >
                         {%else%}
                         <label for="{{pizza.size}}{{pizza.name}} with Cheese" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="sicilian" value="{{pizza.size}} {{pizza.name}} with Cheese" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="sicilian" value="{{pizza.size}} {{pizza.name}} with Cheese  {{pizza.price}}" >
+                   
                         {%endif%}
                    </li>
                    {%endif%}
@@ -143,10 +145,10 @@
                     <li>
                         {%if pizza.toppingQuantity != 0 %}
                         <label for="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="sicilian" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}}{{pizza.toppingQuantity}}"name="sicilian" value="{{pizza.size}} {{pizza.name}} with {{pizza.toppingQuantity}} toppings  {{pizza.price}}" >
                         {%else%}
                         <label for="{{pizza.size}}{{pizza.name}} with Cheese" > {{pizza.price}}</label>
-                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="sicilian" value="{{pizza.size}} {{pizza.name}} with Cheese" >
+                        <input type="radio" id="{{pizza.size}}{{pizza.name}} with Cheese"  name="sicilian" value="{{pizza.size}} {{pizza.name}} with Cheese {{pizza.price}} " >
                         {%endif%}
                    </li>
                    {%endif%}
@@ -155,7 +157,7 @@
             </div>
            <div>
             <br>
-             <input type="submit" id="sicilian" onclick="addpizza()" class="button round"  value ="add to cart">
+             <input type="submit" id="sicilian" onclick="addpizza()" class="button round"  value ="add pizza">
            </div>
         </div>
         <h2 class="title1" >Toppings</h2>
@@ -172,7 +174,7 @@
         </div>
         <div>
             <br>
-            <input type="submit" id="topping" onclick="addtopping()"  class="button round" value ="add to cart">
+            <input type="submit" id="topping" onclick="addtopping()"  class="button round" value ="add topping">
         </div>
 
         </div>
@@ -200,7 +202,7 @@
                 <li>
                     {%if sub.price != -1.0 %} <!--we need to incorporate both small and large menu items even if there no for given item, this is  to have symmetry , for this reason we can use -1 value for signaling that there is no item for this size in the menu-->
                     <label for="{{sub.subName}}" > {{sub.price}}</label>
-                    <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}}">
+                    <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}} {{sub.price}}">
                     {%else%}
                       -<br>
                     {%endif%}
@@ -219,7 +221,7 @@
                     <li>
                         {%if sub.price != -1.0 %}
                         <label for="{{sub.subName}}" > {{sub.price}}</label>
-                        <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}}">
+                        <input type="radio" id="{{sub.subName}}" name="sub" value="{{sub.subName}} {{sub.price}}">
                         {%else%}
                            <br>
                         {% endif %}
@@ -250,7 +252,7 @@
             </div>
             <div class="shrink">
                 <br>
-                <input type="submit" id="sub"  onclick="addpizza()" class="button round" value ="add to cart">
+                <input type="submit" id="sub"  onclick="addpizza()" class="button round" value ="add sub">
                 <br><br>
                 <input type="submit" id="adds"  class="button round" value ="+ subadd">
             </div>
@@ -273,14 +275,14 @@
                     {% for pasta in pasta %}
                     <li>
                         <label for="{{pasta.pastaName}}" > {{pasta.price}}</label>
-                        <input type="radio" id="{{pasta.pastaName}}" name="pasta" value="{{pasta.pastaName}}">
+                        <input type="radio" id="{{pasta.pastaName}}" name="pasta" value="{{pasta.pastaName}} {{pasta.price}}">
                    </li>
                  {% endfor %}
             </ul>
         </div>
         <div>
             <br>
-            <input type="submit" id="pasta"  onclick="addpizza()" class="button round" value ="add to cart">
+            <input type="submit" id="pasta"  onclick="addpizza()" class="button round" value ="add pasta">
         </div>
     </div>
         <h2 class="title">Salads</h2>
@@ -299,14 +301,14 @@
                     {% for salad in salads %}
                     <li>
                         <label for="{{salad.saladName}}" > {{salad.price}}</label>
-                        <input type="radio" id="{{salad.saladName}}" name="salad" value="{{salad.saladName}}">
+                        <input type="radio" id="{{salad.saladName}}" name="salad" value="{{salad.saladName}} {{salad.price}}">
                    </li>
                  {% endfor %}
             </ul>
             </div>
             <div>
                 <br>
-                <input type="submit" id="salad" onclick="addpizza()"  class="button round" value ="add to cart">
+                <input type="submit" id="salad" onclick="addpizza()"  class="button round" value ="add salad">
             </div>
         </div>
         <h2 class="title">Dinner Platters</h2>
@@ -333,7 +335,7 @@
                 {%if platter.size == "small" %}
                 <li>
                     <label for="{{platter.dinnerplatter}}" > {{platter.price}}</label>
-                    <input type="radio" id="{{platter.dinnerplatter}}" name="platter" value="{{platter.dinnerplatter}}">
+                    <input type="radio" id="{{platter.dinnerplatter}}" name="platter" value="{{platter.dinnerplatter}} {{platter.price}}">
                </li>
                {% endif %}
              {% endfor %}
@@ -347,7 +349,7 @@
                     {%if platter.size == "large" %}
                     <li>
                         <label for="{{platter.dinnerplatter}}" > {{platter.price}}</label>
-                        <input type="radio" id="{{platter.dinnerplatter}}" name="platter" value="{{platter.dinnerplatter}}">
+                        <input type="radio" id="{{platter.dinnerplatter}}" name="platter" value="{{platter.dinnerplatter}} {{platter.price}}">
                    </li>
                    {% endif %}
                  {% endfor %}
@@ -355,7 +357,7 @@
             </div>
             <div>
                 <br>
-                <input type="submit" id="platter" onclick="addpizza()"  class="button round" value ="add to cart">
+                <input type="submit" id="platter" onclick="addpizza()"  class="button round" value ="add platter">
             </div>
         </div>
         </div>

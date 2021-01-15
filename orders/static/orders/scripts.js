@@ -5,6 +5,7 @@
 if (JSON.parse(localStorage.getItem('cart'))==null){
 var cart = {}//empty cart object 
 var itemNum=0;//counting the items  in cart object
+var total=0;//total cost of items iin cart
 }else{
      var cart = JSON.parse(localStorage.getItem('cart'));
      if (Object.keys(cart).length ){
@@ -13,12 +14,16 @@ var itemNum=0;//counting the items  in cart object
      meal(item) 
      itemNum++;
      }
+     total=parseFloat(localStorage.getItem('total'));
+ 
      document.addEventListener('DOMContentLoaded', function (){
+     document.querySelector("#totalprice").innerHTML=`Total: ${total}`;  
      document.querySelector("#reviewbutton").classList.remove("visibility");
      document.querySelector("#add").classList.remove("visibility");
      });
     }else{
-         itemNum=0;
+        var itemNum=0;
+        var  total=0;
     }
 }
 
@@ -55,20 +60,19 @@ var itemNum=0;//counting the items  in cart object
 }
 
 
+
 var numToppings; // the number of toppings the pizza should have 
 var num;
 function addpizza() {
    var id=event.srcElement.id
    var all=document.querySelectorAll(`input[name=${id}]`);
-   if (id == "sub"){
-      addtosub(all)
-   }
    all.forEach(element => {
         if( element.checked === true){
               const pizza=element.value;
-              if (id == "sub"){ //check for subadds
-                 addtosub(pizza)
-              }
+              console.log(pizza);
+              const pricePizza=price(pizza);
+              total+=pricePizza; //calculate total price
+              console.log(total);
              const li=document.createElement("li");
               const a=document.createElement("a"); //create links for deletion for specific item
               const linktext=document.createTextNode("Delete"); 
@@ -80,6 +84,7 @@ function addpizza() {
               li.appendChild(a);
               document.querySelector("#itemList").append(li);
               document.querySelector("#itemList").append(a); 
+              document.querySelector("#totalprice").innerHTML=`Total: ${total}`;
               element.checked =false;
               item ={};
               item['name']=pizza;
@@ -142,15 +147,21 @@ function addtopping() {
 }
 
 
-function addtosub(sub){
-     console.log(sub)
+function price(pizza){
+     console.log("works here");
+     var pos = pizza.lastIndexOf(" ");
+     price=pizza.slice(pos+1);
+     result=parseFloat(price);
+     return result;
 }
 
 function count(pizza){
+     var pos = pizza.lastIndexOf(" ");
+     pizzaVal=pizza.substring(0,pos);
 
- if (pizza.includes("1")) {
+ if (pizzaVal.includes("1")) {
    return 1;
- }else if ( pizza.includes("2")) {
+ }else if ( pizzaVal.includes("2")) {
       return 2;
  }else{
       return 3;
@@ -160,6 +171,7 @@ function count(pizza){
 
 function update() {
 localStorage.setItem("cart", JSON.stringify(cart));
+localStorage.setItem("total", total);
 }
 
 document.addEventListener('DOMContentLoaded', function() { //listen to delete event
@@ -188,7 +200,9 @@ document.querySelector('#itemList').addEventListener('click', function(event){
 });
 
 function remove(value){
-     
+   pr=price(value['name'])
+   total=total-pr;
+   document.querySelector("#totalprice").innerHTML=total;  
    if ( value['name'].includes("topping") & document.querySelector(".warning") != null ){   // when you are deleting pizza for which no toppings were added
             console.log("deleting pizaa");
             document.querySelector(".warning").innerHTML="";
