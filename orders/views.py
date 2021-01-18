@@ -57,3 +57,10 @@ def logout_view(request):
       
 def review_view(request):
     return render(request, "orders/review.html")
+
+def sendOrder_view(request):
+    print("something")
+    order= request.POST.get('order', False)
+    print(order)
+
+    

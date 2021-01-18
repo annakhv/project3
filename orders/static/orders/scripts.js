@@ -273,7 +273,6 @@ document.querySelector('#orderbutton').addEventListener('click', function(event)
            orderNumber=Math.floor(Math.random()* 1000000);
            document.querySelector("#ordercomplete").innerHTML=`Order with order-number: #${orderNumber} has been placed`
           sendToServer()
-          console.log("order");
 });
 });
 
@@ -299,6 +298,16 @@ function enablebuttons(){
 }
 
 function sendToServer()   { //sendng order details to server and empty the cart
+    const request=new XMLHttpRequest();
+    request.open("POST", "/sendOrder");
+     request.setRequestHeader("X-CSRF-Token", "{{csrf_token()}}");//this doesnt work
+    request.onload= function(){
+         const response=request.responseText; // here we get if order has been submitted
+    };
+     const data=new FormData();
+     order=JSON.stringify(cart)
+     data.append('order', order);
+     request.send(data);
+     console.log("datasend");
 
-
-}
+};
