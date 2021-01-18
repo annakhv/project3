@@ -146,6 +146,35 @@ function addtopping() {
    }
 }
 
+function subadd(){
+let id=event.srcElement.id
+let all=document.querySelector(`#${id}`).options;
+ for(let i=0; i<all.length; i++){
+        element=all[i];
+        if(element.selected === true){
+              element.selected =false;
+              let subadd=element.value;
+               var pos =subadd.lastIndexOf(" "); //this is to split the name of sub and price 
+               if (pos != -1) {  // this implies that substring is not none
+               price=subadd.slice(pos+1);
+               subadd=subadd.slice(0,pos);
+               console.log(total);
+               console.log(price);
+               total+=parseFloat(price); //this doesnt work 
+               console.log(total);
+               }
+              let ul=document.createElement('ul');
+              let nestedLi=document.createElement('li')
+              ul.append(nestedLi);
+              nestedLi.innerHTML=subadd;
+               let  count=document.querySelector("#itemList").childElementCount;
+               let liElement= document.querySelector("#itemList").childNodes[count-1] //find the last li element which presumably is sub
+               liElement.append(ul);
+
+             
+        }
+}
+}
 
 /*function price(pizza){  //this function did not work and i have no idea why , so i had to put this code by hand in two places
      console.log("works here");
@@ -175,10 +204,8 @@ localStorage.setItem("total", total);
 }
 
 document.addEventListener('DOMContentLoaded', function() { //listen to delete event
-document.querySelector('#itemList').addEventListener('click', function(event){
-          event.preventDefault();
-          links= document.querySelectorAll('.deletelink');
-          links.forEach (function(link) {
+//document.querySelector('#itemList').addEventListener('click', function(event){
+              document.querySelectorAll('.deletelink').forEach (function(link) {      
                link.onclick=function(){
                     number=link.getAttribute("data-number");
                     val=cart[number];
@@ -186,24 +213,23 @@ document.querySelector('#itemList').addEventListener('click', function(event){
                     delete cart[number];
                     update()
                     if (Object.keys(cart).length === 0){ //delete graphics for cart if cart is empty
-                    console.log("works");
+                          total = 0; //this should automaticly become 0 but we can also reassign the value just to be sure
                           document.querySelector("#reviewbutton").classList.add("visibility");
                           document.querySelector("#add").classList.add("visibility");
                     }
               
-              
+                    return false;
 
                }
     });
 
-});
+//});
 });
 
 function remove(value){
  //  pr=price(value['name'])
    var pos =value['name'].lastIndexOf(" ");
    price=value['name'].slice(pos+1);
-   console.log(price);
    total-=parseFloat(price);
    document.querySelector("#totalprice").innerHTML=`Total: ${total}`;  
    if ( value['name'].includes("topping") & document.querySelector(".warning") != null ){   // when you are deleting pizza for which no toppings were added
@@ -272,7 +298,7 @@ function enablebuttons(){
 
 }
 
-function sendToServer(){ //sendng order details to server and empty the cart
+function sendToServer()   { //sendng order details to server and empty the cart
 
 
 }

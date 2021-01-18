@@ -237,11 +237,11 @@
                     {% for sub in subs%}
                     {%if sub.subSize == "large"  %}
                     <li>
-                        <select name="adds" id="adds" >
+                        <select  id="adds" >
                         
-                            <option value="None" >None</option>
+                            <option  name="adds" value="None" >None</option>
                             {% for adds in sub.adds.all%}  
-                            <option value="{{adds}}">{{adds.addsName}}</option>
+                            <option  name= "adds" value="{{adds.addsName}} {{adds.price}}">{{adds.addsName}}</option>
                             {% endfor %}
                         </select>
                     </li>
@@ -254,7 +254,7 @@
                 <br>
                 <input type="submit" id="sub"  onclick="addpizza()" class="button round" value ="add sub">
                 <br><br>
-                <input type="submit" id="adds"  class="button round" value ="+ subadd">
+                <input type="submit" id="adds" onclick="subadd()" class="button round" value ="+ subadd">
             </div>
            
         </div>
