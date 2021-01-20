@@ -237,9 +237,8 @@
                     {% for sub in subs%}
                     {%if sub.subSize == "large"  %}
                     <li>
-                        <select  id="adds" >
-                        
-                            <option  name="adds" value="None" >None</option>
+                        <select  class="adds">
+                            <option  selected  name="adds" value="" >Select</option>
                             {% for adds in sub.adds.all%}  
                             <option  name= "adds" value="{{adds.addsName}} {{adds.price}}">{{adds.addsName}}</option>
                             {% endfor %}

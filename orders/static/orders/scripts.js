@@ -34,6 +34,8 @@ var total=0;//total cost of items iin cart
   const li=document.createElement("li"); 
   const objectkeys=Object.keys(item);
   for( i=0; i< objectkeys.length; i++){
+       console.log(objectkeys[i])
+       console.log(cart);
   if (objectkeys[i] === "name"){
               const a=document.createElement("a"); //create links for deletion for specific item
               const linktext=document.createTextNode("Delete"); 
@@ -48,6 +50,7 @@ var total=0;//total cost of items iin cart
               document.querySelector("#itemList").append(a); 
               });
   } else {
+       console.log("print");
         const ul=document.createElement("ul");
         li.appendChild(ul);
         const nestedli=document.createElement("li");
@@ -148,21 +151,19 @@ function addtopping() {
 
 function subadd(){
 let id=event.srcElement.id
-let all=document.querySelector(`#${id}`).options;
+let allSelected=document.querySelectorAll(`.${id}`)
+for(let j=0; j<allSelected.length; j++){
+     all=allSelected[j];
  for(let i=0; i<all.length; i++){
         element=all[i];
         if(element.selected === true){
-              element.selected =false;
+              element.selected=false;
               let subadd=element.value;
+              if (element.value != "" ){
                var pos =subadd.lastIndexOf(" "); //this is to split the name of sub and price 
-               if (pos != -1) {  // this implies that substring is not none
                price=subadd.slice(pos+1);
                subadd=subadd.slice(0,pos);
-               console.log(total);
-               console.log(price);
-               total+=parseFloat(price); //this doesnt work 
-               console.log(total);
-               }
+               total+=parseFloat(price); 
               let ul=document.createElement('ul');
               let nestedLi=document.createElement('li')
               ul.append(nestedLi);
@@ -170,10 +171,16 @@ let all=document.querySelector(`#${id}`).options;
                let  count=document.querySelector("#itemList").childElementCount;
                let liElement= document.querySelector("#itemList").childNodes[count-1] //find the last li element which presumably is sub
                liElement.append(ul);
-
+               document.querySelector("#totalprice").innerHTML=`Total: ${total}`; //change the price
+               num=Math.floor(Math.random()*Math.random()* 100);
+               cart[itemNum-1]["zzz"+num]=subadd //save the item and add zzz so that the adds be after subs which has name property(this is important when looping localstorage as objectkeys are sorted)
+               console.log(cart);
+               update()
+              }
              
         }
-}
+    }
+  }
 }
 
 /*function price(pizza){  //this function did not work and i have no idea why , so i had to put this code by hand in two places
@@ -298,16 +305,23 @@ function enablebuttons(){
 }
 
 function sendToServer()   { //sendng order details to server and empty the cart
-    const request=new XMLHttpRequest();
-    request.open("POST", "/sendOrder");
-     request.setRequestHeader("X-CSRF-Token", "{{csrf_token()}}");//this doesnt work
-    request.onload= function(){
-         const response=request.responseText; // here we get if order has been submitted
-    };
-     const data=new FormData();
-     order=JSON.stringify(cart)
-     data.append('order', order);
-     request.send(data);
+     var token=document.querySelector('input[name="csrfToken"]').value;
+    
+     const request=new XMLHttpRequest();
+      request.open("POST", "/sendOrder");
+      console.log("before");
+        request.setRequestHeader("csrfToken", token);//doesnt work
+        console.log("after");
+       request.onload= function(){
+        const response=request.responseText; // here we get if order has been submitted
+      };
+      console.log("here");
+      const data=new FormData();
+     order=JSON.stringify(cart);
+     if(request.Headers["csrfToken"] != null){
+       data.append('order', order);
+      request.send(data);
      console.log("datasend");
+     }
 
 };
