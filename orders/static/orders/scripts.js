@@ -34,8 +34,6 @@ var total=0;//total cost of items iin cart
   const li=document.createElement("li"); 
   const objectkeys=Object.keys(item);
   for( i=0; i< objectkeys.length; i++){
-       console.log(objectkeys[i])
-       console.log(cart);
   if (objectkeys[i] === "name"){
               const a=document.createElement("a"); //create links for deletion for specific item
               const linktext=document.createTextNode("Delete"); 
@@ -132,9 +130,6 @@ function addtopping() {
               let varName="topping"+num;
               cart[itemNum][varName]=topping;
               num++;
-              console.log(num);
-              console.log(numToppings);
-          
         }   
    });
    if (num === numToppings) { // check if right number of toppings were added
@@ -143,7 +138,6 @@ function addtopping() {
    document.querySelector(".warning").classList.remove("warning");
    document.querySelector(".withtopping").classList.remove("withtopping");
    enablebuttons()
-   console.log(cart);
    num=0;
    itemNum++;
    }
@@ -325,3 +319,107 @@ function sendToServer()   { //sendng order details to server and empty the cart
      }
 
 };
+
+
+
+document.addEventListener("DOMContentLoaded", function(event) { 
+// Create a Stripe client.
+// Note: this merchant has been set up for demo purposes.
+var stripe = Stripe('pk_test_51IBkC8J1fe6rYWd51rlp3fnB9c4wfbjgle2jQiKtnQ2wBYOlYvMO4yIrO1EcT8cm7Dp9FjKLTEUACEfbcZEGWu5n003lFwJuT2');
+
+// Create an instance of Elements.
+var elements = stripe.elements();
+
+// Custom styling can be passed to options when creating an Element.
+// (Note that this demo uses a wider set of styles than the guide below.)
+var style = {
+  base: {
+    color: '#32325d',
+    fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    fontSmoothing: 'antialiased',
+    fontSize: '16px',
+    '::placeholder': {
+      color: '#aab7c4'
+    },
+    ':-webkit-autofill': {
+      color: '#32325d',
+    },
+  },
+  invalid: {
+    color: '#fa755a',
+    iconColor: '#fa755a',
+    ':-webkit-autofill': {
+      color: '#fa755a',
+    },
+  }
+};
+
+// Create an instance of the iban Element.
+var iban = elements.create('iban', {
+  style: style,
+  supportedCountries: ['SEPA'],
+});
+
+
+// Add an instance of the iban Element into the `iban-element` <div>.
+
+iban.mount('#iban-element');
+console.log("goeshere");
+var errorMessage = document.getElementById('error-message');
+var bankName = document.getElementById('bank-name');
+
+
+
+iban.on('change', function(event) {
+  // Handle real-time validation errors from the iban Element.
+  if (event.error) {
+    errorMessage.textContent = event.error.message;
+    errorMessage.classList.add('visible');
+  } else {
+    errorMessage.classList.remove('visible');
+  }
+
+  // Display bank name corresponding to IBAN, if available.
+  if (event.bankName) {
+    bankName.textContent = event.bankName;
+    bankName.classList.add('visible');
+  } else {
+    bankName.classList.remove('visible');
+  }
+});
+
+// Handle form submission.
+var form = document.getElementById('payment-form');
+form.addEventListener('submit', function(event) {
+  event.preventDefault();
+  showLoading();
+
+  var sourceData = {
+    type: 'sepa_debit',
+    currency: 'eur',
+    owner: {
+      name: document.querySelector('input[name="name"]').value,
+      email: document.querySelector('input[name="email"]').value,
+    },
+    mandate: {
+      // Automatically send a mandate notification email to your customer
+      // once the source is charged.
+      notification_method: 'email',
+    }
+  };
+
+  // Call `stripe.createSource` with the iban Element and additional options.
+  stripe.createSource(iban, sourceData).then(function(result) {
+    if (result.error) {
+      // Inform the customer that there was an error.
+      errorMessage.textContent = result.error.message;
+      errorMessage.classList.add('visible');
+      stopLoading();
+    } else {
+      // Send the Source to your server to create a charge.
+      errorMessage.classList.remove('visible');
+      stripeSourceHandler(result.source);
+    }
+  });
+});
+});
