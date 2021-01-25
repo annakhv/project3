@@ -438,16 +438,8 @@ function stripeSourceHandler(source) {
 
   // Submit the form
   form.submit();
-}
 
-/*
-console.log("sofarworks")
- var checkoutButton = document.getElementById('checkout-button');
-
-      checkoutButton.addEventListener('click', function() {
-        // Create a new Checkout Session using the server-side endpoint you
-        // created in step 3.
-        fetch('/create-checkout-session', {
+   fetch('/submitOrder', {
           method: 'POST',
         })
         .then(function(response) {
@@ -465,7 +457,9 @@ console.log("sofarworks")
           }
         })
         .catch(function(error) {
-          console.error('Error:', error);
+        console.error('Error:', error);
         });
-      });
-      */
+}
+
+
+ 

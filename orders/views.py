@@ -6,7 +6,7 @@ from django.urls import reverse
 from .models import DinnerPlatters, Salads, pasta, pizza, toppings, subs
 import stripe
 
-stripe.api_key ='pk_test_51IBkC8J1fe6rYWd51rlp3fnB9c4wfbjgle2jQiKtnQ2wBYOlYvMO4yIrO1EcT8cm7Dp9FjKLTEUACEfbcZEGWu5n003lFwJuT2'
+stripe.api_key ='sk_test_51IBkC8J1fe6rYWd5w12jcwF8eYDej0CStL3qHKHOU5aJTwHsd1X0gvxBSZT9AQa7RaThZmtiAVmbbzVmVmjSHf6p00NGYUcWps'
 
 def index(request):
     if not request.user.is_authenticated:
@@ -67,6 +67,7 @@ def sendOrder_view(request):
     print(order)
 
 def submitOrder_view(request):
+    print(request)
     print("start")
     session = stripe.checkout.Session.create(
     payment_method_types=['card'],
@@ -81,7 +82,8 @@ def submitOrder_view(request):
       'quantity': 1,
     }],
     mode='payment',
-    success_url='/success',
+    success_url='http://127.0.0.1:8000/success',
+    cancel_url='http://127.0.0.1:8000/review',
     
   )
     print(session.id)
