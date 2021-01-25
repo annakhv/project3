@@ -326,7 +326,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 // Create a Stripe client.
 // Note: this merchant has been set up for demo purposes.
 var stripe = Stripe('pk_test_51IBkC8J1fe6rYWd51rlp3fnB9c4wfbjgle2jQiKtnQ2wBYOlYvMO4yIrO1EcT8cm7Dp9FjKLTEUACEfbcZEGWu5n003lFwJuT2');
-
 // Create an instance of Elements.
 var elements = stripe.elements();
 
@@ -392,7 +391,7 @@ iban.on('change', function(event) {
 var form = document.getElementById('payment-form');
 form.addEventListener('submit', function(event) {
   event.preventDefault();
-  showLoading();
+ 
 
   var sourceData = {
     type: 'sepa_debit',
@@ -408,18 +407,65 @@ form.addEventListener('submit', function(event) {
     }
   };
 
+  console.log(sourceData)
+
   // Call `stripe.createSource` with the iban Element and additional options.
   stripe.createSource(iban, sourceData).then(function(result) {
     if (result.error) {
       // Inform the customer that there was an error.
       errorMessage.textContent = result.error.message;
       errorMessage.classList.add('visible');
-      stopLoading();
+     
     } else {
       // Send the Source to your server to create a charge.
       errorMessage.classList.remove('visible');
+      console.log(result);
       stripeSourceHandler(result.source);
     }
   });
 });
 });
+
+
+function stripeSourceHandler(source) {
+  // Insert the source ID into the form so it gets submitted to the server
+  var form = document.getElementById('payment-form');
+  var hiddenInput = document.createElement('input');
+  hiddenInput.setAttribute('type', 'hidden');
+  hiddenInput.setAttribute('name', 'stripeSource');
+  hiddenInput.setAttribute('value', source.id);
+  form.appendChild(hiddenInput);
+
+  // Submit the form
+  form.submit();
+}
+
+/*
+console.log("sofarworks")
+ var checkoutButton = document.getElementById('checkout-button');
+
+      checkoutButton.addEventListener('click', function() {
+        // Create a new Checkout Session using the server-side endpoint you
+        // created in step 3.
+        fetch('/create-checkout-session', {
+          method: 'POST',
+        })
+        .then(function(response) {
+          return response.json();
+        })
+        .then(function(session) {
+          return stripe.redirectToCheckout({ sessionId: session.id });
+        })
+        .then(function(result) {
+          // If `redirectToCheckout` fails due to a browser or network
+          // error, you should display the localized error message to your
+          // customer using `error.message`.
+          if (result.error) {
+            alert(result.error.message);
+          }
+        })
+        .catch(function(error) {
+          console.error('Error:', error);
+        });
+      });
+      */

@@ -25,45 +25,45 @@
             <input name="csrfToken" value="{{ csrf_token }}" type="hidden">
             <input type="submit"  id="orderbutton" class="button"  value ="Place an order">
           </form>
-           <br>
-           <br>
-           <h3 id="ordercomplete" ></h3>
+         
         </main>
        
-        <section>
-          <form action="/charge" method="post" id="payment-form">
-            <div class="form-row inline">
-              <div class="col">
+        <section >
+       <div class="container">
+          <form action="/submitOrder" method="post" id="payment-form">
+           
+            <div class="row">
+              <div class="col-md-6">
                 <label for="name">
                   Name
                 </label>
-                <input id="name" name="name" placeholder="Jenny Rosen" required>
+                <input id="name" class="form-control" name="name" placeholder="Jenny Rosen" required>
               </div>
-              <div class="col">
+              <div class="col-md-6">
                 <label for="email">
                   Email Address
                 </label>
-                <input id="email" class="StripeElement" name="email" type="email" placeholder="jenny.rosen@example.com" required>
+                <input id="email" class="form-control" name="email" type="email" placeholder="jenny.rosen@example.com" required>
               </div>
             </div>
           
-            <div class="form-row">
+            <div >
               <label for="iban-element">
                 IBAN
               </label>
-              <div id="iban-element" >
+              <div id="iban-element"  >
                 <!-- A Stripe Element will be inserted here. -->
               </div>
             </div>
-            <div id="bank-name"></div>
+            <div id="bank-name"></div><br>
           
-            <button >Submit Payment</button>
+            <button id="checkout-button" class="btn-group-justified btn">Submit Payment</button>
           
             <!-- Used to display form errors. -->
             <div id="error-message" role="alert"></div>
           
             <!-- Display mandate acceptance text. -->
-            <div id="mandate-acceptance">
+            <div id="mandate-acceptance"><br>
               By providing your IBAN and confirming this payment, you authorise
               (A) Rocketship Inc.
               and Stripe, our payment service provider, to send instructions to your bank to
@@ -73,6 +73,11 @@
               within 8 weeks starting from the date on which your account was debited.
             </div>
           </form>
+        </div>
+            </section>
+            <section>
+            
+              <h3 id="ordercomplete" ></h3>
             </section>
     </body>
 

@@ -4,6 +4,9 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
 from .models import DinnerPlatters, Salads, pasta, pizza, toppings, subs
+import stripe
+
+stripe.api_key ='pk_test_51IBkC8J1fe6rYWd51rlp3fnB9c4wfbjgle2jQiKtnQ2wBYOlYvMO4yIrO1EcT8cm7Dp9FjKLTEUACEfbcZEGWu5n003lFwJuT2'
 
 def index(request):
     if not request.user.is_authenticated:
@@ -63,4 +66,28 @@ def sendOrder_view(request):
     order= request.POST.get('order', False)
     print(order)
 
+def submitOrder_view(request):
+    print("start")
+    session = stripe.checkout.Session.create(
+    payment_method_types=['card'],
+    line_items=[{
+      'price_data': {
+        'currency': 'usd',
+        'product_data': {
+          'name': 'T-shirt',
+        },
+        'unit_amount': 2000,
+      },
+      'quantity': 1,
+    }],
+    mode='payment',
+    success_url='/success',
     
+  )
+    print(session.id)
+    print(session)
+    return jsonify(id=session.id)
+
+
+def success_view(request):
+    return render(request, "orders/success.html")
