@@ -1,10 +1,12 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.urls import reverse
-from .models import DinnerPlatters, Salads, pasta, pizza, toppings, subs
+from .models import DinnerPlatters, Salads, pasta, pizza, toppings, subs, order
 import stripe
+from django.views.decorators.csrf import csrf_exempt
+import json
 
 stripe.api_key ='sk_test_51IBkC8J1fe6rYWd5w12jcwF8eYDej0CStL3qHKHOU5aJTwHsd1X0gvxBSZT9AQa7RaThZmtiAVmbbzVmVmjSHf6p00NGYUcWps'
 
@@ -61,10 +63,34 @@ def logout_view(request):
 def review_view(request):
     return render(request, "orders/review.html")
 
+@csrf_exempt
 def sendOrder_view(request):
-    print("something")
-    order= request.POST.get('order', False)
-    print(order)
+    adminOrder={}
+    thisOrder= request.POST.get('order', False)
+    charge= request.POST.get('charge', False)
+    orderNum= request.POST.get('orderNum', False)
+    orderNum=int(orderNum)
+    currentOrder=json.loads(thisOrder)
+    for objects in currentOrder:
+        items=currentOrder[objects]
+        for keys in items:
+            if keys=="name":    
+               print(items[keys])
+            else:
+               print(items[keys]) ##these are toppings or subadds
+
+    nextOrder=order(orderNumber=orderNum, orderItems=thisOrder)
+    print(nextOrder)
+    
+    data={
+        "order":"sent"
+    }
+
+    return JsonResponse(data)
+
+
+
+
 
 def submitOrder_view(request):
     print(request)

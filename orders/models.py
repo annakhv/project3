@@ -1,4 +1,5 @@
 from django.db import models
+from jsonfield import JSONField
 
 class pizza(models.Model):
     name=models.CharField(max_length=64)
@@ -46,3 +47,10 @@ class DinnerPlatters(models.Model):
      price=models.FloatField()   
      def __str__(self):
               return f"{self.dinnerplatter} dinnerplatter size {self.size} costs {self.price} "
+
+class order(models.Model):
+     orderNumber=models.CharField(max_length=64)
+     orderItems=models.JSONField()
+     orderComplete=models.BooleanField(default=False)
+     def __str__(self):
+          return f"order N: {self.orderNumber}  {self.orderItems} status {self.orderComplete}"

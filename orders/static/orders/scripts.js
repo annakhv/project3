@@ -303,20 +303,21 @@ function sendToServer()   { //sendng order details to server and empty the cart
     
      const request=new XMLHttpRequest();
       request.open("POST", "/sendOrder");
-      console.log("before");
-        request.setRequestHeader("csrfToken", token);//doesnt work
-        console.log("after");
+     // request.setRequestHeader("csrfToken", token);
        request.onload= function(){
         const response=request.responseText; // here we get if order has been submitted
+        console.log(JSON.parse(response));
       };
-      console.log("here");
+      orderNumber=Math.floor(Math.random()* 1000000);
       const data=new FormData();
-     order=JSON.stringify(cart);
-     if(request.Headers["csrfToken"] != null){
-       data.append('order', order);
+      order=JSON.stringify(cart)
+      charge=JSON.stringify(total)
+      orderNum=JSON.stringify(orderNumber)
+      data.append('order', order);
+      data.append('charge', charge);
+      data.append('orderNum', orderNum)
       request.send(data);
-     console.log("datasend");
-     }
+     
 
 };
 
